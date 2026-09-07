@@ -103,7 +103,6 @@ public class ProjectController {
         return ResponseEntity.ok(projectQueryService.searchUsers(keyword));
     }
 
-    // TODO: 프로젝트 요약 AI 기능 오류로 인해 임시 주석 처리
 //    @GetMapping("/{projectId}/summary")
 //    public ResponseEntity<String> summarizeProject(@PathVariable Long projectId) {
 //        return ResponseEntity.ok(aiSummaryService.summarizeProject(projectId));

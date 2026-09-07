@@ -158,7 +158,6 @@ public class FormController {
         return ResponseEntity.ok(adminFormService.getDraftForm(formId));
     }
 
-    // TODO: 양식 요약 AI 기능 오류로 인해 임시 주석 처리
 //    @GetMapping("/submit/{submitId}/summary")
 //    public ResponseEntity<String> summarizeFormSubmit(
 //            @AuthenticationPrincipal AuthenticatedUser user,
