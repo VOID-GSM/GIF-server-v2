@@ -5,9 +5,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDateTime;
+
 public interface NotificationRepository extends JpaRepository<NotificationHistory, Long> {
 
-    Slice<NotificationHistory> findAllByUserIdOrderByCreatedAtDesc(Long userId, Pageable pageable);
+    Slice<NotificationHistory> findAllByUserIdAndCreatedAtGreaterThanEqualOrderByCreatedAtDesc(
+            Long userId, LocalDateTime startDateTime, Pageable pageable);
 
-    long countByUserIdAndIsReadFalse(Long userId);
+    long countByUserIdAndIsReadFalseAndCreatedAtGreaterThanEqual(
+            Long userId, LocalDateTime startDateTime);
 }
