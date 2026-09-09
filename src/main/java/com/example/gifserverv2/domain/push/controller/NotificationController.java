@@ -22,16 +22,18 @@ public class NotificationController {
     @GetMapping
     public ResponseEntity<Slice<GetNotificationResponse>> getNotifications(
             @AuthenticationPrincipal AuthenticatedUser user,
+            @RequestParam(name = "days", required = false, defaultValue = "7") Integer days,
             @PageableDefault(size = 20) Pageable pageable
     ) {
-        return ResponseEntity.ok(notificationHistoryService.getNotifications(user.userId(), pageable));
+        return ResponseEntity.ok(notificationHistoryService.getNotifications(user.userId(), days, pageable));
     }
 
     @GetMapping("/unread-count")
     public ResponseEntity<GetNotificationUnreadCountResponse> getNotificationUnreadCount(
-            @AuthenticationPrincipal AuthenticatedUser user
+            @AuthenticationPrincipal AuthenticatedUser user,
+            @RequestParam(name = "days", required = false, defaultValue = "7") Integer days
     ) {
-        return ResponseEntity.ok(notificationHistoryService.getNotificationUnreadCount(user.userId()));
+        return ResponseEntity.ok(notificationHistoryService.getNotificationUnreadCount(user.userId(), days));
     }
 
     @PatchMapping("/{id}/read")
